@@ -1,1 +1,4 @@
-<p>main-component works!</p>
+<app-league-tab
+  *ngFor="let leagueUrl of leaguesUrls"
+  (click)="loadLeagueData(leagueUrl)"
+></app-league-tab>
