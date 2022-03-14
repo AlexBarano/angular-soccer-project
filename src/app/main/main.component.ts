@@ -9,11 +9,22 @@ import { MainComponentService } from './main.service';
 })
 export class MainComponent implements OnInit {
   leagues: ILeague[] = [];
+  private maxTeams: number = 5;
+
   constructor(private mainComponentService: MainComponentService) {}
 
   ngOnInit(): void {
-    this.mainComponentService.fetchLeagues().subscribe((leagues) => {
-      console.log(leagues);
+    this.mainComponentService.fetchLeagues().subscribe((fetchedLeagues) => {
+      // let teamsCount: number = 0;
+      // fetchedLeagues.forEach((leagueData) => {
+      //   const league:ILeague = {};
+      //   this.leagues.push(league);
+      //   teamsCount++;
+      //   if (teamsCount > this.maxTeams) {
+      //     return;
+      //   }
+      //});
+      console.log(fetchedLeagues);
     });
   }
 }

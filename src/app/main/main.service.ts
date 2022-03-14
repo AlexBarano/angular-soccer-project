@@ -4,7 +4,6 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class MainComponentService {
-  private maxTeams: number = 5;
   constructor(private http: HttpClient) {}
 
   fetchLeagues() {
@@ -14,18 +13,15 @@ export class MainComponentService {
       )
       .pipe(
         map((data) => {
-          const newLeagues = [];
-          let teamCounter: number = 0;
-          for (let key in data) {
-            if (teamCounter >= this.maxTeams) {
-              return newLeagues;
-            }
-            if (data.hasOwnProperty(key)) {
-              newLeagues.push({ ...data, id: key });
-              teamCounter++;
-            }
-          }
-          return newLeagues;
+          const teams = Object.values(data);
+          const teamsExtracted: any[] = [];
+          teams.forEach((teamsArray: any[]) => {
+            //for some reason we need to extract the with double looping
+            teamsArray.forEach((team: any) => {
+              teamsExtracted.push(team);
+            });
+          });
+          return teamsExtracted;
         })
       );
   }
