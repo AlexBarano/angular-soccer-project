@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-league-tab',
   templateUrl: './league-tab.component.html',
-  styleUrls: ['./league-tab.component.scss']
+  styleUrls: ['./league-tab.component.scss'],
 })
 export class LeagueTabComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor() {}
+  @Input() leagueName: string = '';
+  ngOnInit(): void {}
 }

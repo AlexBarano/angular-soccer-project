@@ -1,4 +1,5 @@
 <app-league-tab
-  *ngFor="let leagueUrl of leaguesUrls"
-  (click)="loadLeagueData(leagueUrl)"
+  *ngFor="let league of leagues"
+  (click)="loadLeagueData(league[0])"
+  [leagueName]="league[1]"
 ></app-league-tab>
