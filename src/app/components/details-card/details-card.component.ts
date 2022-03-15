@@ -27,7 +27,8 @@ export class DetailsCardComponent implements OnInit {
         savedTeams.shift();
       }
       savedTeams.push(savedTeam);
+      localStorage.setItem('savedTeams', JSON.stringify(savedTeams));
+      alert(`Added the team ${savedTeam.name} to your favorites!`);
     }
-    localStorage.setItem('savedTeams', JSON.stringify(savedTeams));
   }
 }
