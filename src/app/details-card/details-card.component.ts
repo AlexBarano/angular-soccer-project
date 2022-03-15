@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-details-card',
   templateUrl: './details-card.component.html',
-  styleUrls: ['./details-card.component.scss']
+  styleUrls: ['./details-card.component.scss'],
 })
 export class DetailsCardComponent implements OnInit {
+  @Input() teamName: string = '';
+  @Input() teamLogo: string = '';
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -1,5 +1,11 @@
 <app-league-tab
   *ngFor="let league of leagues"
-  (click)="loadLeagueData(league[0])"
+  [leagueUrl]="league[0]"
   [leagueName]="league[1]"
+  (onLeaguePick)="loadTeams($event)"
 ></app-league-tab>
+<app-details-card
+  *ngFor="let team of teams"
+  [teamLogo]="team.logo"
+  [teamName]="team.name"
+></app-details-card>
