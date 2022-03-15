@@ -9,6 +9,7 @@ import { DetailsCardComponent } from './components/details-card/details-card.com
 import { LeagueTabComponent } from './components/league-tab/league-tab.component';
 import { MainComponent } from './components/main/main.component';
 import { MainComponentService } from './services/main.service';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MainComponentService } from './services/main.service';
     DetailsCardComponent,
     LeagueTabComponent,
     MainComponent,
+    LoginPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [MainComponentService],
