@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { DetailsCardComponent } from './details-card/details-card.component';
-import { LeagueTabComponent } from './league-tab/league-tab.component';
-import { MainComponent } from './main/main.component';
-import { MainComponentService } from './main/main.service';
+import { DetailsCardComponent } from './components/details-card/details-card.component';
+import { LeagueTabComponent } from './components/league-tab/league-tab.component';
+import { MainComponent } from './components/main/main.component';
+import { MainComponentService } from './services/main.service';
 
 @NgModule({
   declarations: [
