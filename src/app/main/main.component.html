@@ -4,8 +4,13 @@
   [leagueName]="league[1]"
   (onLeaguePick)="loadTeams($event)"
 ></app-league-tab>
+
+<div *ngIf=""></div>
 <app-details-card
+  #cardDetails
   *ngFor="let team of teams"
   [teamLogo]="team.logo"
   [teamName]="team.name"
 ></app-details-card>
+<h1 #loadingCondition>Loading...</h1>
+<h1 #firstLoad>Please select a league</h1>
