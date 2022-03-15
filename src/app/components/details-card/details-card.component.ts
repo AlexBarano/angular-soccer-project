@@ -13,10 +13,21 @@ export class DetailsCardComponent implements OnInit {
 
   ngOnInit(): void {}
   saveTeam(): void {
-    //const savedTeams: ITeam[] = JSON.parse(localStorage.getItem('savedTeams'));
-    const savedTeams: ITeam[] = [];
+    const savedTeams: ITeam[] = JSON.parse(
+      localStorage.getItem('savedTeams') || '[]'
+    ) as ITeam[];
     const savedTeam: ITeam = { name: this.teamName, logo: this.teamLogo };
-    savedTeams.push(savedTeam);
+    // check if team already in local storage
+    if (
+      !savedTeams.find((team: ITeam) => {
+        return team.logo === savedTeam.logo && team.name === savedTeam.name;
+      })
+    ) {
+      if (savedTeams.length >= 5) {
+        savedTeams.shift();
+      }
+      savedTeams.push(savedTeam);
+    }
     localStorage.setItem('savedTeams', JSON.stringify(savedTeams));
   }
 }
