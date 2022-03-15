@@ -1,16 +1,19 @@
-.attention {
-  display: table;
-  margin: 0 auto;
-}
-.tab {
-  margin: 0 auto;
-}
 .tab-space {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 5px 0;
+  .tab {
+    margin: 0 auto;
+  }
 }
 .cards-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+.attention {
+  display: table;
+  margin: 0 auto;
 }

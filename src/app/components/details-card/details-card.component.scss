@@ -1,24 +1,25 @@
 @import "../../../styles.scss";
 
-.logo {
-  height: $logo-size;
-  width: $logo-size;
-}
-.title {
-  margin: auto;
-  width: 250px;
-}
-
-.save-button {
-  height: 40px;
-  margin: auto;
-}
 .card {
   border: 1px solid;
   border-radius: $border-radius;
   margin: 7px auto;
   padding: auto;
-  width: 500px;
+  width: 75%;
+  max-width: 500px;
   height: 80px;
   display: flex;
+  .title {
+    margin: auto;
+    width: 50%;
+  }
+  .logo {
+    height: $logo-size;
+    width: $logo-size;
+  }
+}
+
+.save-button {
+  height: 40px;
+  margin: auto;
 }
