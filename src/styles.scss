@@ -11,9 +11,14 @@ button {
 }
 button:hover {
   cursor: pointer;
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+  outline: none;
 }
 button:active {
-  background: #e5e5e5;
+  background: #c8c8c8;
   -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
   -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
   box-shadow: inset 0px 0px 5px #c1c1c1;
@@ -25,4 +30,5 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
+  position: relative;
 }

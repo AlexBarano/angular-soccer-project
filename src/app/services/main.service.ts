@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable()
 export class MainComponentService {
   constructor(private http: HttpClient) {}
 
+  private loadingSubject = new BehaviorSubject<boolean>(false);
   // this function returns the
   fetchLeague(leagueName: string): Observable<any[]> {
     return this.http

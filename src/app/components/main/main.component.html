@@ -1,21 +1,23 @@
-<nav class="tab-space">
-  <app-league-tab
-    *ngFor="let league of leagues"
-    [leagueUrl]="league.url"
-    [leagueName]="league.name"
-    (onLoading)="loadingUpdate($event)"
-    (onLeaguePick)="loadLeague($event)"
-  ></app-league-tab>
-</nav>
+<div class="container">
+  <nav class="tab-space">
+    <app-league-tab
+      *ngFor="let league of leagues"
+      [leagueUrl]="league.url"
+      [leagueName]="league.name"
+      (onLoading)="loadingUpdate($event)"
+      (onLeaguePick)="loadLeague($event)"
+    ></app-league-tab>
+  </nav>
 
-<div class="cards-container">
-  <h1 *ngIf="loadedLeague !== ''">League: {{ loadedLeague }}</h1>
-  <app-details-card
-    *ngFor="let team of teams"
-    [teamLogo]="team.logo"
-    [teamName]="team.name"
-    class="card"
-  ></app-details-card>
+  <div class="cards-container">
+    <h1 *ngIf="loadedLeague !== ''">League: {{ loadedLeague }}</h1>
+    <app-details-card
+      *ngFor="let team of teams"
+      [teamLogo]="team.logo"
+      [teamName]="team.name"
+      class="card"
+    ></app-details-card>
+  </div>
+  <button (click)="logOut()" class="logout-btn">Logout</button>
+  <span *ngIf="loading" class="attention">Loading...</span>
 </div>
-<button (click)="logOut()">Logout</button>
-<span *ngIf="loading" class="attention">Loading...</span>
