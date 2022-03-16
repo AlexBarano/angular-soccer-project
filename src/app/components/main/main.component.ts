@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { MainComponentService } from 'src/app/services/main.service';
 import { ITeam } from '../../models/team.model';
 
 @Component({
@@ -7,7 +8,7 @@ import { ITeam } from '../../models/team.model';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   leagues: { url: string; name: string }[] = [
     { url: 'English%20Premier%20League', name: 'English Premier' },
     {
@@ -24,15 +25,22 @@ export class MainComponent implements OnInit {
   teams: ITeam[] = [];
   loading: boolean = false;
   loadedLeague: string = '';
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private mainService: MainComponentService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.mainService.loadingSubject.subscribe((loading: boolean) => {
+      this.loading = loading;
+    });
+  }
+  ngOnDestroy(): void {
+    this.mainService.loadingSubject.unsubscribe();
+  }
   loadLeague(value: { teams: ITeam[]; leagueName: string }): void {
     this.loadedLeague = value.leagueName;
     this.teams = value.teams;
-  }
-  loadingUpdate(loading: boolean) {
-    this.loading = loading;
   }
   logOut() {
     this.authService.logOut();

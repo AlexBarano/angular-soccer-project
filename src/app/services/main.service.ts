@@ -7,13 +7,15 @@ import { map } from 'rxjs/operators';
 export class MainComponentService {
   constructor(private http: HttpClient) {}
 
-  private loadingSubject = new BehaviorSubject<boolean>(false);
-  // this function returns the
+  loadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
+
   fetchLeague(leagueName: string): Observable<any[]> {
+    this.loadingSubject.next(true);
     return this.http
       .get(
-        'https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=' +
-          leagueName
+        `https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=${leagueName}`
       )
       .pipe(
         map((data) => {
@@ -25,6 +27,7 @@ export class MainComponentService {
               leagueExtracted.push(league);
             });
           });
+          this.loadingSubject.next(false);
           return leagueExtracted;
         })
       );

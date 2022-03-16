@@ -15,11 +15,9 @@ export class LeagueTabComponent implements OnInit {
     teams: ITeam[];
     leagueName: string;
   }>();
-  @Output() onLoading = new EventEmitter<boolean>();
   ngOnInit(): void {}
 
   loadTeamsOfLeague(leagueUrl: string): void {
-    this.onLoading.emit(true);
     this.mainComponentService
       .fetchLeague(leagueUrl)
       .subscribe((leagueMetaData) => {
@@ -31,10 +29,8 @@ export class LeagueTabComponent implements OnInit {
           });
         });
         this.onLeaguePick.emit({ teams: teams, leagueName: this.leagueName });
-        this.onLoading.emit(false);
         return;
       });
     this.onLeaguePick.emit({ teams: [], leagueName: '' });
-    this.onLoading.emit(false);
   }
 }
