@@ -13,7 +13,6 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainComponent,
-    data: { requiresLogin: true },
     canActivate: [AuthGuard],
   },
 ];

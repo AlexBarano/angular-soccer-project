@@ -1,2 +1,28 @@
 $logo-size: 50px;
 $border-radius: 5px;
+$shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+button {
+  width: 150px;
+  height: 30px;
+  border: none;
+  border-radius: $border-radius;
+  margin: 10px 10px;
+}
+button:hover {
+  cursor: pointer;
+}
+button:active {
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+  outline: none;
+}
+html {
+  background-color: #56baed;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}

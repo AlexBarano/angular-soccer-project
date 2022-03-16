@@ -1,7 +1,5 @@
 <div class="card">
-  <h4 class="title">
-    <img [src]="teamLogo" class="logo" />
-  </h4>
-  <h3 class="title">{{ teamName }}</h3>
+  <img [src]="teamLogo" />
+  <span>{{ teamName }}</span>
 </div>
 <button class="save-button" (click)="saveTeam()">Save Team</button>

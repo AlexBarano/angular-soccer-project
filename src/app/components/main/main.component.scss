@@ -1,13 +1,13 @@
+.container {
+}
 .tab-space {
+  float: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 5px 0;
-  .tab {
-    margin: 0 auto;
-  }
 }
 .cards-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

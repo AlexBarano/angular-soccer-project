@@ -5,7 +5,6 @@ import { IUser } from '../models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  user = new Subject<IUser>();
   constructor(private router: Router) {}
 
   login(email: string, password: string): boolean {
@@ -23,7 +22,7 @@ export class AuthService {
     }
   }
 
-  checkIfLoggedIn(): boolean {
+  isLoggedIn(): boolean {
     const user: IUser = JSON.parse(
       localStorage.getItem('user') || '{}'
     ) as IUser;

@@ -1,13 +1,7 @@
 <div class="container">
-  <label for="uname"> <b>Email: </b></label>
-  <input #email type="text" placeholder="Enter Email" name="uname" required />
-  <label for="pass"><b>Password: </b></label>
-  <input
-    #password
-    type="password"
-    placeholder="Enter Password"
-    name="pass"
-    required
-  />
-  <button type="submit" (click)="login()">Login</button>
+  <form>
+    <input #email type="text" placeholder="Enter Email" required />
+    <input #password type="password" placeholder="Enter Password" required />
+    <button type="submit" (click)="login()">Login</button>
+  </form>
 </div>

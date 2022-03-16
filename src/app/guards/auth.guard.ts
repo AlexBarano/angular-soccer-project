@@ -18,10 +18,12 @@ export class AuthGuard implements CanActivate {
     const user: IUser = JSON.parse(
       localStorage.getItem('user') || '{}'
     ) as IUser;
+
     if (user.hasLoggedIn) {
       return true;
     }
-    this.router.navigate(['/login']);
+    // this will prevent a bug which will show the path '/' without redirecting to login
+    this.router.navigate(['login']);
     return false;
   }
 }

@@ -1,16 +1,15 @@
-<div class="tab-space">
+<nav class="tab-space">
   <app-league-tab
     *ngFor="let league of leagues"
     [leagueUrl]="league.url"
     [leagueName]="league.name"
     (onLoading)="loadingUpdate($event)"
     (onLeaguePick)="loadLeague($event)"
-    class="tab"
   ></app-league-tab>
-</div>
+</nav>
 
 <div class="cards-container">
-  <h1>League: {{ loadedLeague }}</h1>
+  <h1 *ngIf="loadedLeague !== ''">League: {{ loadedLeague }}</h1>
   <app-details-card
     *ngFor="let team of teams"
     [teamLogo]="team.logo"
