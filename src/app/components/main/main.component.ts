@@ -36,7 +36,7 @@ export class MainComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy(): void {
-    this.mainService.loadingSubject.unsubscribe();
+    //this.mainService.loadingSubject.unsubscribe();
   }
   loadLeague(value: { teams: ITeam[]; leagueName: string }): void {
     this.loadedLeague = value.leagueName;

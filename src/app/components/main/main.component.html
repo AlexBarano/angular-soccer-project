@@ -17,6 +17,11 @@
       class="card"
     ></app-details-card>
   </div>
-  <button (click)="logOut()" class="logout-btn">Logout</button>
-  <span *ngIf="loading" class="attention">Loading...</span>
+  <div *ngIf="loading" class="lds-ring">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </div>
+<button (click)="logOut()" class="logout-btn">Logout</button>
