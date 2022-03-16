@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { ITeam } from '../../models/team.model';
 
 @Component({
@@ -23,7 +24,7 @@ export class MainComponent implements OnInit {
   teams: ITeam[] = [];
   loading: boolean = false;
   loadedLeague: string = '';
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
   loadLeague(value: { teams: ITeam[]; leagueName: string }): void {
@@ -32,5 +33,8 @@ export class MainComponent implements OnInit {
   }
   loadingUpdate(loading: boolean) {
     this.loading = loading;
+  }
+  logOut() {
+    this.authService.logOut();
   }
 }
