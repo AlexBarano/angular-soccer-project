@@ -11,6 +11,7 @@ export class MapsService {
   autocomplete!: google.maps.places.Autocomplete;
   map!: google.maps.Map;
   place: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  markers: google.maps.Marker[] = [];
   directionsRenderer = new google.maps.DirectionsRenderer();
   directionsService = new google.maps.DirectionsService();
   readonly selectedMode = google.maps.TravelMode.DRIVING;
@@ -22,11 +23,12 @@ export class MapsService {
     try {
       lat = this.autocomplete.getPlace().geometry?.location.lat() as number;
       lng = this.autocomplete.getPlace().geometry?.location.lng() as number;
-      new google.maps.Marker({
+      const marker: google.maps.Marker = new google.maps.Marker({
         position: { lat: lat, lng: lng },
         map: this.map,
       });
       this.map.panTo(new google.maps.LatLng(lat, lng));
+      this.markers.push(marker);
       this.place.next(this.autocomplete.getPlace().name);
     } catch (error: unknown) {
       console.log(error);
@@ -41,6 +43,7 @@ export class MapsService {
       'icon',
       'name',
     ]);
+    this.autocomplete.setComponentRestrictions({ country: ['il'] });
   }
   initMap(mapElement: ElementRef) {
     const mapProperties = {
@@ -74,7 +77,7 @@ export class MapsService {
     );
   }
   // sets all the params on the button
-  centerControl(controlDiv: Element) {
+  private centerControl(controlDiv: Element): void {
     // Set CSS for the control border.
     const controlUI = document.createElement('div');
 
@@ -103,6 +106,11 @@ export class MapsService {
     // Setup the click event listeners: simply set the map to Chicago.
     controlUI.addEventListener('click', () => {
       this.onDirection();
+    });
+  }
+  clearMarkers() {
+    this.markers.forEach((marker) => {
+      marker.setMap(null);
     });
   }
 }
