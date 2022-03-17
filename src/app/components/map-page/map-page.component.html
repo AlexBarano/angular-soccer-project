@@ -1,10 +1,6 @@
 <div class="container">
-  <input
-    placeholder="Search"
-    type="text"
-    class="search-input"
-    [(ngModel)]="searchInput"
-  />
+  <input placeholder="Search" type="text" class="search-input" #input />
   <button (click)="onSearch()">Find Place</button>
-  <app-map></app-map>
+  <div #map class="map-style"></div>
+  <button (click)="onDirection()">Direction to My Home</button>
 </div>
