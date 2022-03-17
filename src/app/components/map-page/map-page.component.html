@@ -1,0 +1,10 @@
+<div class="container">
+  <input
+    placeholder="Search"
+    type="text"
+    class="search-input"
+    [(ngModel)]="searchInput"
+  />
+  <button (click)="onSearch()">Find Place</button>
+  <app-map></app-map>
+</div>

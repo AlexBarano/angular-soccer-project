@@ -45,4 +45,7 @@ export class MainComponent implements OnInit, OnDestroy {
   logOut() {
     this.authService.logOut();
   }
+  switchToMapPage() {
+    this.authService.switchToMapPage();
+  }
 }

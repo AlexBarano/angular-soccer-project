@@ -1,0 +1,16 @@
+@import "../../../styles.scss";
+.search-input {
+  width: 50%;
+  height: 30px;
+  border-radius: $border-radius;
+  border: none;
+  margin-bottom: 5%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}

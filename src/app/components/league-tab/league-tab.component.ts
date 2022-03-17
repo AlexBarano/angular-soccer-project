@@ -18,19 +18,9 @@ export class LeagueTabComponent implements OnInit {
   ngOnInit(): void {}
 
   loadTeamsOfLeague(leagueUrl: string): void {
-    this.mainComponentService
-      .fetchLeague(leagueUrl)
-      .subscribe((leagueMetaData) => {
-        let teams: ITeam[] = [];
-        leagueMetaData.forEach((teamMetaData) => {
-          teams.push({
-            name: teamMetaData['strTeam'],
-            logo: teamMetaData['strTeamBadge'],
-          });
-        });
-        this.onLeaguePick.emit({ teams: teams, leagueName: this.leagueName });
-        return;
-      });
+    this.mainComponentService.fetchTeams(leagueUrl).subscribe((teams) => {
+      this.onLeaguePick.emit({ teams: teams, leagueName: this.leagueName });
+    });
     this.onLeaguePick.emit({ teams: [], leagueName: '' });
   }
 }

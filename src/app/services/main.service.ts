@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ITeam } from '../models/team.model';
 
 @Injectable()
 export class MainComponentService {
@@ -11,7 +12,7 @@ export class MainComponentService {
     false
   );
 
-  fetchLeague(leagueName: string): Observable<any[]> {
+  fetchTeams(leagueName: string): Observable<any[]> {
     this.loadingSubject.next(true);
     return this.http
       .get(
@@ -27,8 +28,15 @@ export class MainComponentService {
               leagueExtracted.push(league);
             });
           });
+          let teams: ITeam[] = [];
+          leagueExtracted.forEach((teamMetaData) => {
+            teams.push({
+              name: teamMetaData['strTeam'],
+              logo: teamMetaData['strTeamBadge'],
+            });
+          });
           this.loadingSubject.next(false);
-          return leagueExtracted;
+          return teams;
         })
       );
   }

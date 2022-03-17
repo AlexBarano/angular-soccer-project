@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { MainComponent } from './components/main/main.component';
+import { MapPageComponent } from './components/map-page/map-page.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'map', component: MapPageComponent },
 ];
 
 @NgModule({
