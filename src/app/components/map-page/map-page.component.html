@@ -3,4 +3,9 @@
   <button (click)="onSearch()">Find Place</button>
   <div #map class="map-style"></div>
   <button (click)="onDirection()">Direction to My Home</button>
+  <div class="markers-container">
+    <div class="markers-list">
+      <span *ngFor="let place of places">{{ place }}</span>
+    </div>
+  </div>
 </div>
