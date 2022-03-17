@@ -11,11 +11,14 @@ export class MapPageComponent implements OnInit {
   @ViewChild('map') mapElement!: ElementRef;
   @ViewChild('input') input!: ElementRef;
   places: string[] = [];
+  routes: google.maps.DirectionsRoute[] = [];
   constructor(private mapsService: MapsService) {}
 
   ngOnInit(): void {
     this.mapsService.place.subscribe((place) => {
-      this.places.push(place);
+      if (place !== '') {
+        this.places.push(place);
+      }
     });
   }
   ngAfterViewInit() {
@@ -24,8 +27,5 @@ export class MapPageComponent implements OnInit {
   }
   onSearch() {
     this.mapsService.onSearch();
-  }
-  onDirection() {
-    this.mapsService.onDirection();
   }
 }

@@ -21,17 +21,17 @@
 }
 .markers-container {
   width: 50%;
-  height: 500px;
+  height: auto;
   background-color: white;
   border-radius: $border-radius;
   margin-bottom: 40px;
+  overflow: auto;
   .markers-list {
     display: flex;
     flex-direction: column;
     margin: 30px auto;
     text-align: center;
     width: 80%;
-    height: 300px;
     span {
       margin: 5px 0;
     }
