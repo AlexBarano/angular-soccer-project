@@ -45,7 +45,6 @@ export class MapsService {
     }
   }
   initAutocomplete(input: HTMLInputElement) {
-    this.directionsRenderer.setMap(this.map);
     this.autocomplete = new google.maps.places.Autocomplete(input);
     this.autocomplete.setFields([
       'address_components',
@@ -71,6 +70,7 @@ export class MapsService {
       });
     });
     this.mapElement = mapElement;
+    this.directionsRenderer.setMap(this.map);
     this.initMoveoMarker();
     this.initBtns();
   }
@@ -129,6 +129,7 @@ export class MapsService {
           response.routes[0].legs[0].duration.text,
           response.routes[0].legs[0].distance.text
         );
+        console.log(response);
         this.directionsRenderer.setDirections(response);
       }
     );
