@@ -181,10 +181,12 @@ export class MapsService {
   }
 
   private onClear(): void {
+    // this.resetMap();
     for (let i = 0; i < this.markers.length; i++) {
       this.markers[i].setMap(null);
     }
     this.markers = [];
+    this.directionsRenderer.set('directions', null);
     this.initMoveoMarker();
   }
 
@@ -192,6 +194,7 @@ export class MapsService {
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0; i < this.markers.length; i++) {
       bounds.extend(this.markers[i].getPosition()!);
+      console.log(this.markers[i]);
     }
     this.map.fitBounds(bounds);
   }
@@ -205,15 +208,17 @@ export class MapsService {
   private onSwitchStyle(): void {
     switch (this.currStyle) {
       case MY_MAP_ID:
-        this.initMap(this.mapElement, DEFAULT_MAP_ID);
-        this.currStyle = DEFAULT_MAP_ID;
+        this.setStyle(DEFAULT_MAP_ID);
         break;
       case DEFAULT_MAP_ID:
-        this.initMap(this.mapElement, MY_MAP_ID);
-        this.currStyle = MY_MAP_ID;
+        this.setStyle(MY_MAP_ID);
         break;
       default:
         break;
     }
+  }
+  private setStyle(mapId: string = this.currStyle): void {
+    this.currStyle = mapId;
+    this.initMap(this.mapElement, mapId);
   }
 }
