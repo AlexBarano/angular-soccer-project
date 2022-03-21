@@ -77,16 +77,22 @@ export class MapsService {
     directionsDiv.addEventListener('click', () => {
       this.onDirection();
     });
+    // center btn
+    const centerDiv = document.createElement('div');
+    this.centerControl(centerDiv, 'Center');
+    centerDiv.addEventListener('click', () => {
+      this.onCenter();
+    });
     // switch styles btn
     const switchStyle = document.createElement('div');
     this.centerControl(switchStyle, 'Switch Styles');
     switchStyle.addEventListener('click', () => {
       this.onSwitchStyle();
     });
-    // center btn
-    const centerDiv = document.createElement('div');
-    this.centerControl(centerDiv, 'Show Markers');
-    centerDiv.addEventListener('click', () => {
+    // show all markers btn
+    const showMarkersDiv = document.createElement('div');
+    this.centerControl(showMarkersDiv, 'Show Markers');
+    showMarkersDiv.addEventListener('click', () => {
       this.onShowMarkers();
     });
     // clear btn
@@ -96,12 +102,15 @@ export class MapsService {
       this.onClear();
     });
     // here we push to the map the btns
-    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+    this.map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(
       directionsDiv
     );
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerDiv);
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
+      showMarkersDiv
+    );
     this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(clearDiv);
     this.map.controls[google.maps.ControlPosition.RIGHT_TOP].push(switchStyle);
+    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerDiv);
   }
   private onDirection(): void {
     this.directionsService.route(
@@ -132,7 +141,7 @@ export class MapsService {
     this.markers.push(moveoMarker);
   }
 
-  // sets all the styles on the button
+  // Sets all the styles on the button
   private centerControl(controlDiv: HTMLDivElement, btnName: string): void {
     // Set CSS for the control border.
     const controlUI = document.createElement('div');
@@ -167,6 +176,7 @@ export class MapsService {
     this.markers = [];
     this.initMoveoMarker();
   }
+
   private onShowMarkers() {
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0; i < this.markers.length; i++) {
@@ -174,6 +184,13 @@ export class MapsService {
     }
     this.map.fitBounds(bounds);
   }
+
+  private onCenter() {
+    this.map.panTo(
+      new google.maps.LatLng(MOVEO_LOCATION.lat, MOVEO_LOCATION.lng)
+    );
+  }
+
   private onSwitchStyle() {
     switch (this.currStyle) {
       case MY_MAP_ID:
