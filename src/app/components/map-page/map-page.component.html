@@ -2,6 +2,13 @@
   <input placeholder="Search" type="text" class="search-input" #input />
   <button (click)="onSearch()">Find Place</button>
   <div #map class="map-style"></div>
+  <label>Time and Duration of the Trip:</label>
+  <div class="markers-container">
+    <div class="markers-list">
+      <span>Duration: {{ directionDetails.duration }}</span>
+      <span>Distance: {{ directionDetails.distance }}</span>
+    </div>
+  </div>
   <label>Saved places:</label>
   <div class="markers-container">
     <div class="markers-list">

@@ -16,6 +16,11 @@ export class MapsService {
   mapElement!: ElementRef;
   currStyle: string = MY_MAP_ID;
   place: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  directionDetails: BehaviorSubject<{ duration: string; distance: string }> =
+    new BehaviorSubject<{ duration: string; distance: string }>({
+      distance: '',
+      duration: '',
+    });
   markers: google.maps.Marker[] = [];
   directionsRenderer = new google.maps.DirectionsRenderer();
   directionsService = new google.maps.DirectionsService();
@@ -122,12 +127,16 @@ export class MapsService {
       (response) => {
         console.log('dist: ', response.routes[0].legs[0].distance);
         console.log('time: ', response.routes[0].legs[0].duration);
+        this.setDirectionDetails(
+          response.routes[0].legs[0].duration.text,
+          response.routes[0].legs[0].distance.text
+        );
         this.directionsRenderer.setDirections(response);
       }
     );
   }
 
-  private initMoveoMarker() {
+  private initMoveoMarker(): void {
     const moveoMarker: google.maps.Marker = new google.maps.Marker({
       position: MOVEO_LOCATION,
       map: this.map,
@@ -139,6 +148,9 @@ export class MapsService {
       // },
     });
     this.markers.push(moveoMarker);
+  }
+  setDirectionDetails(duration: string, distance: string) {
+    this.directionDetails.next({ distance, duration });
   }
 
   // Sets all the styles on the button
@@ -169,7 +181,7 @@ export class MapsService {
     controlUI.appendChild(controlText);
   }
 
-  private onClear() {
+  private onClear(): void {
     for (let i = 0; i < this.markers.length; i++) {
       this.markers[i].setMap(null);
     }
@@ -177,7 +189,7 @@ export class MapsService {
     this.initMoveoMarker();
   }
 
-  private onShowMarkers() {
+  private onShowMarkers(): void {
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0; i < this.markers.length; i++) {
       bounds.extend(this.markers[i].getPosition()!);
@@ -191,7 +203,7 @@ export class MapsService {
     );
   }
 
-  private onSwitchStyle() {
+  private onSwitchStyle(): void {
     switch (this.currStyle) {
       case MY_MAP_ID:
         this.initMap(this.mapElement, DEFAULT_MAP_ID);
