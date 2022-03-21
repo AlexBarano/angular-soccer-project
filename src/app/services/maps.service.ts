@@ -6,6 +6,8 @@ const MOVEO_LOCATION = { lat: 32.06525320784879, lng: 34.771908335816505 };
 const MY_LOCATION = { lat: 32.073942567885524, lng: 35.06544633262209 };
 const MY_MAP_ID = '1ac03278f6501c1';
 const DEFAULT_MAP_ID = 'c51bbc21f00746b2';
+const MOVEO_ICON =
+  'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/v1469622513/pf5lnfgaaxe8sptd6dgk.png';
 
 @Injectable({ providedIn: 'root' })
 export class MapsService {
@@ -120,6 +122,12 @@ export class MapsService {
     const moveoMarker: google.maps.Marker = new google.maps.Marker({
       position: MOVEO_LOCATION,
       map: this.map,
+      label: 'Moveo',
+      // icon: {
+      //   url: MOVEO_ICON,
+      //   // size: new google.maps.Size(32, 32),
+      //   // origin: new google.maps.Point(32, 32),
+      // },
     });
     this.markers.push(moveoMarker);
   }
@@ -179,6 +187,5 @@ export class MapsService {
       default:
         break;
     }
-    console.log('switch style');
   }
 }
