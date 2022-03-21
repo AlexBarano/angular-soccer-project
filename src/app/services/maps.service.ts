@@ -54,11 +54,7 @@ export class MapsService {
       disableDefaultUI: true,
     };
     this.map = new google.maps.Map(mapElement.nativeElement, mapProperties);
-    const moveoMarker: google.maps.Marker = new google.maps.Marker({
-      position: MOVEO_LOCATION,
-      map: this.map,
-    });
-    this.markers.push(moveoMarker);
+    this.initMoveoMarker();
     this.initBtns();
   }
 
@@ -100,6 +96,15 @@ export class MapsService {
       }
     );
   }
+
+  private initMoveoMarker() {
+    const moveoMarker: google.maps.Marker = new google.maps.Marker({
+      position: MOVEO_LOCATION,
+      map: this.map,
+    });
+    this.markers.push(moveoMarker);
+  }
+
   // sets all the styles on the button
   private centerControl(controlDiv: HTMLDivElement, btnName: string): void {
     // Set CSS for the control border.
@@ -133,6 +138,7 @@ export class MapsService {
       this.markers[i].setMap(null);
     }
     this.markers = [];
+    this.initMoveoMarker();
   }
   private onShowMarkers() {
     var bounds = new google.maps.LatLngBounds();
