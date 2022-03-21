@@ -29,7 +29,4 @@ export class MapPageComponent implements OnInit {
     this.mapsService.onSearch();
     this.input.nativeElement.value = '';
   }
-  onClear() {
-    this.mapsService.clearMarkers();
-  }
 }

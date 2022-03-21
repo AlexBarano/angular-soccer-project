@@ -54,17 +54,41 @@ export class MapsService {
       disableDefaultUI: true,
     };
     this.map = new google.maps.Map(mapElement.nativeElement, mapProperties);
-    new google.maps.Marker({
+    const moveoMarker: google.maps.Marker = new google.maps.Marker({
       position: MOVEO_LOCATION,
       map: this.map,
     });
-    const centerControlDiv = document.createElement('div');
-    this.centerControl(centerControlDiv);
-    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
-      centerControlDiv
-    );
+    this.markers.push(moveoMarker);
+    this.initBtns();
   }
-  onDirection(): void {
+
+  private initBtns() {
+    // directions btn
+    const directionsDiv = document.createElement('div');
+    this.centerControl(directionsDiv, 'Directions');
+    directionsDiv.addEventListener('click', () => {
+      this.onDirection();
+    });
+    // center btn
+    const centerDiv = document.createElement('div');
+    this.centerControl(centerDiv, 'Show Markers');
+    centerDiv.addEventListener('click', () => {
+      this.onShowMarkers();
+    });
+    // clear btn
+    const clearDiv = document.createElement('div');
+    this.centerControl(clearDiv, 'Clear');
+    clearDiv.addEventListener('click', () => {
+      this.onClear();
+    });
+    // here we push to the map
+    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+      directionsDiv
+    );
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerDiv);
+    this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(clearDiv);
+  }
+  private onDirection(): void {
     this.directionsService.route(
       {
         origin: MY_LOCATION,
@@ -76,8 +100,8 @@ export class MapsService {
       }
     );
   }
-  // sets all the params on the button
-  private centerControl(controlDiv: Element): void {
+  // sets all the styles on the button
+  private centerControl(controlDiv: HTMLDivElement, btnName: string): void {
     // Set CSS for the control border.
     const controlUI = document.createElement('div');
 
@@ -100,17 +124,21 @@ export class MapsService {
     controlText.style.lineHeight = '38px';
     controlText.style.paddingLeft = '5px';
     controlText.style.paddingRight = '5px';
-    controlText.innerHTML = 'Directions';
+    controlText.innerHTML = btnName;
     controlUI.appendChild(controlText);
-
-    // Setup the click event listeners: simply set the map to Chicago.
-    controlUI.addEventListener('click', () => {
-      this.onDirection();
-    });
   }
-  clearMarkers() {
-    this.markers.forEach((marker) => {
-      marker.setMap(null);
-    });
+
+  private onClear() {
+    for (let i = 0; i < this.markers.length; i++) {
+      this.markers[i].setMap(null);
+    }
+    this.markers = [];
+  }
+  private onShowMarkers() {
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < this.markers.length; i++) {
+      bounds.extend(this.markers[i].getPosition()!);
+    }
+    this.map.fitBounds(bounds);
   }
 }
