@@ -1,8 +1,11 @@
 <div class="container">
   <input placeholder="Search" type="text" class="search-input" #input />
   <button (click)="onSearch()">Find Place</button>
-  <div class="map-container">
-    <div #map class="map-style"></div>
+  <div #map class="map-style"></div>
+  <div class="down-details">
+    <div class="markers-container">
+      <span *ngFor="let place of places">{{ place }}</span>
+    </div>
     <div
       class="directions-container"
       *ngIf="
@@ -11,13 +14,6 @@
     >
       <span>Duration: {{ directionDetails.duration }}</span>
       <span>Distance: {{ directionDetails.distance }}</span>
-    </div>
-  </div>
-
-  <label>Saved places:</label>
-  <div class="markers-container">
-    <div class="markers-list">
-      <span *ngFor="let place of places">{{ place }}</span>
     </div>
   </div>
 </div>

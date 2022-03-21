@@ -187,6 +187,7 @@ export class MapsService {
     }
     this.markers = [];
     this.directionsRenderer.set('directions', null);
+    this.setDirectionDetails('', '');
     this.initMoveoMarker();
   }
 
@@ -217,7 +218,7 @@ export class MapsService {
         break;
     }
   }
-  private setStyle(mapId: string = this.currStyle): void {
+  private setStyle(mapId: string): void {
     this.currStyle = mapId;
     this.initMap(this.mapElement, mapId);
   }
