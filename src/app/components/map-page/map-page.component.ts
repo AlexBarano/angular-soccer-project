@@ -11,7 +11,6 @@ export class MapPageComponent implements OnInit {
   @ViewChild('map') mapElement!: ElementRef;
   @ViewChild('input') input!: ElementRef;
   places: string[] = [];
-  routes: google.maps.DirectionsRoute[] = [];
   directionDetails: { duration: string; distance: string } = {
     distance: '',
     duration: '',

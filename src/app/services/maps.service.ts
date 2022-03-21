@@ -125,8 +125,6 @@ export class MapsService {
         travelMode: this.selectedMode,
       },
       (response) => {
-        console.log('dist: ', response.routes[0].legs[0].distance);
-        console.log('time: ', response.routes[0].legs[0].duration);
         this.setDirectionDetails(
           response.routes[0].legs[0].duration.text,
           response.routes[0].legs[0].distance.text
