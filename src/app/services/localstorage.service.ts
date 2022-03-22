@@ -5,17 +5,21 @@ import { ITeam } from '../models/team.model';
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
   savedTeams: BehaviorSubject<ITeam[]> = new BehaviorSubject<ITeam[]>([]);
-  constructor() {}
-
-  saveTeam(team: ITeam): boolean {
+  constructor() {
     const savedTeams: ITeam[] = JSON.parse(
       localStorage.getItem('savedTeams') || '[]'
     ) as ITeam[];
-    const savedTeam: ITeam = { name: team.name, logo: team.logo };
+    this.savedTeams.next(savedTeams);
+  }
+
+  saveTeam(savedTeam: ITeam): boolean {
+    const savedTeams: ITeam[] = JSON.parse(
+      localStorage.getItem('savedTeams') || '[]'
+    ) as ITeam[];
     // check if team already in local storage (the array)
     if (
       !savedTeams.find((team: ITeam) => {
-        return team.logo === savedTeam.logo && team.name === savedTeam.name;
+        return savedTeam.logo === team.logo && savedTeam.name === team.name;
       })
     ) {
       if (savedTeams.length >= 5) {
@@ -29,10 +33,17 @@ export class LocalStorageService {
     }
     return false;
   }
-  loadSavedTeams() {
+  deleteTeam(deletedTeam: ITeam) {
     const savedTeams: ITeam[] = JSON.parse(
       localStorage.getItem('savedTeams') || '[]'
     ) as ITeam[];
-    this.savedTeams.next(savedTeams);
+    const newSavedTeams: ITeam[] = savedTeams.filter((savedTeam) => {
+      return (
+        deletedTeam.logo !== savedTeam.logo &&
+        deletedTeam.name !== savedTeam.name
+      );
+    });
+    localStorage.setItem('savedTeams', JSON.stringify(newSavedTeams));
+    this.savedTeams.next(newSavedTeams);
   }
 }

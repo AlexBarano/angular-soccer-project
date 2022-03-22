@@ -1,6 +1,11 @@
 <div class="container">
   <div class="saved-teams-container">
-    <img *ngFor="let savedTeam of savedTeams" [src]="savedTeam.logo" />
+    <img
+      class="logo"
+      *ngFor="let savedTeam of savedTeams"
+      [src]="savedTeam.logo"
+      (click)="deleteSavedTeam(savedTeam)"
+    />
   </div>
   <nav class="tab-space">
     <app-league-tab

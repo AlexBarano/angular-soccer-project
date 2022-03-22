@@ -38,7 +38,6 @@ export class MainComponent implements OnInit, OnDestroy {
     this.localstorageService.savedTeams.subscribe((teams: ITeam[]) => {
       this.savedTeams = teams;
     });
-    this.localstorageService.loadSavedTeams();
   }
   ngOnDestroy(): void {
     //this.mainService.loadingSubject.unsubscribe();
@@ -46,5 +45,9 @@ export class MainComponent implements OnInit, OnDestroy {
   loadLeague(value: { teams: ITeam[]; leagueName: string }): void {
     this.loadedLeague = value.leagueName;
     this.teams = value.teams;
+  }
+  deleteSavedTeam(team: ITeam): void {
+    this.localstorageService.deleteTeam(team);
+    alert(`Deleted team: ${team.name}!`);
   }
 }
