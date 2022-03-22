@@ -1,9 +1,13 @@
+@import "../../../styles.scss";
 .container {
   display: flex;
   justify-self: center;
   align-items: center;
+  background-color: #60c0f0;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
   button {
-    margin: 20px auto 0 auto;
+    margin: 10px auto 10px auto;
     font-size: 20px;
     width: 150px;
     height: 50px;
