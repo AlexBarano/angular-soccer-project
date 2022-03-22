@@ -3,22 +3,26 @@ $border-radius: 5px;
 $shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 button {
-  width: 150px;
+  width: 120px;
   height: 30px;
   border: none;
+  background-color: transparent;
   border-radius: $border-radius;
   margin: 10px 10px;
+  outline: none;
+  font-size: 17px;
 }
 button:hover {
   cursor: pointer;
-  background: #e5e5e5;
+  color: white;
+  border: none;
   -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
   -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
   box-shadow: inset 0px 0px 5px #c1c1c1;
   outline: none;
 }
 button:active {
-  background: #c8c8c8;
+  color: white;
   -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
   -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
   box-shadow: inset 0px 0px 5px #c1c1c1;

@@ -13,6 +13,7 @@ import { MainComponent } from './components/main/main.component';
 import { MainComponentService } from './services/main.service';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { MapPageComponent } from './components/map-page/map-page.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import { MapPageComponent } from './components/map-page/map-page.component';
     MainComponent,
     LoginPageComponent,
     MapPageComponent,
+    NavBarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [MainComponentService],

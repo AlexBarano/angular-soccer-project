@@ -16,7 +16,7 @@ const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'map', component: MapPageComponent },
+  { path: 'map', component: MapPageComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

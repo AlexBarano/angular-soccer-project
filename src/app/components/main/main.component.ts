@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { MainComponentService } from 'src/app/services/main.service';
 import { ITeam } from '../../models/team.model';
 
@@ -25,10 +24,7 @@ export class MainComponent implements OnInit, OnDestroy {
   teams: ITeam[] = [];
   loading: boolean = false;
   loadedLeague: string = '';
-  constructor(
-    private authService: AuthService,
-    private mainService: MainComponentService
-  ) {}
+  constructor(private mainService: MainComponentService) {}
 
   ngOnInit(): void {
     this.mainService.loadingSubject.subscribe((loading: boolean) => {
@@ -41,11 +37,5 @@ export class MainComponent implements OnInit, OnDestroy {
   loadLeague(value: { teams: ITeam[]; leagueName: string }): void {
     this.loadedLeague = value.leagueName;
     this.teams = value.teams;
-  }
-  logOut() {
-    this.authService.logOut();
-  }
-  switchToMapPage() {
-    this.authService.switchToMapPage();
   }
 }

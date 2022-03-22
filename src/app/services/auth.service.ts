@@ -42,4 +42,7 @@ export class AuthService {
   switchToMapPage() {
     this.router.navigate(['map']);
   }
+  switchToMainPage() {
+    this.router.navigate(['main']);
+  }
 }

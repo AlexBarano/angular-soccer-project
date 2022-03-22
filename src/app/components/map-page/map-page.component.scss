@@ -12,36 +12,18 @@
     height: 30px;
     border-radius: $border-radius;
     border: none;
+    box-shadow: $shadow;
   }
-
   .map-style {
     border-radius: $border-radius;
     width: 800px;
     height: 500px;
+    box-shadow: $shadow;
   }
-
-  .down-details {
-    width: 30%;
+  .directions-container {
     display: flex;
-    background-color: white;
-    border-radius: $border-radius;
-    position: relative;
-    .directions-container {
-      position: absolute;
-      top: 0;
-      right: 0;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      width: 200px;
-    }
-    .markers-container {
-      height: auto;
-      border-radius: $border-radius;
-      margin-bottom: 20px;
-      overflow: auto;
-      display: flex;
-      flex-direction: column;
+    span {
+      margin: 0 10px;
     }
   }
 }

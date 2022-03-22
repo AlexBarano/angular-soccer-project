@@ -140,11 +140,12 @@ export class MapsService {
       position: MOVEO_LOCATION,
       map: this.map,
       label: 'Moveo',
-      // icon: {
-      //   url: MOVEO_ICON,
-      //   // size: new google.maps.Size(32, 32),
-      //   // origin: new google.maps.Point(32, 32),
-      // },
+      icon: {
+        url: MOVEO_ICON,
+        // size: new google.maps.Size(32, 32),
+        // origin: new google.maps.Point(32, 32),
+        scaledSize: new google.maps.Size(32, 32),
+      },
     });
     this.markers.push(moveoMarker);
   }
@@ -195,7 +196,6 @@ export class MapsService {
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0; i < this.markers.length; i++) {
       bounds.extend(this.markers[i].getPosition()!);
-      console.log(this.markers[i]);
     }
     this.map.fitBounds(bounds);
   }

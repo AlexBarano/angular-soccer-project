@@ -3,9 +3,6 @@
   <button (click)="onSearch()">Find Place</button>
   <div #map class="map-style"></div>
   <div class="down-details">
-    <div class="markers-container">
-      <span *ngFor="let place of places">{{ place }}</span>
-    </div>
     <div
       class="directions-container"
       *ngIf="
