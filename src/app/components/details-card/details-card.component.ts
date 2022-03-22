@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { ITeam } from 'src/app/models/team.model';
+import { LocalStorageService } from 'src/app/services/localstorage.service';
 
 @Component({
   selector: 'app-details-card',
@@ -9,28 +11,18 @@ import { ITeam } from 'src/app/models/team.model';
 export class DetailsCardComponent implements OnInit {
   @Input() teamName: string = '';
   @Input() teamLogo: string = '';
-  constructor() {}
+
+  constructor(private localstorage: LocalStorageService) {}
 
   ngOnInit(): void {}
   // this function saves a selected team to the local storage
   saveTeam(): void {
-    const savedTeams: ITeam[] = JSON.parse(
-      localStorage.getItem('savedTeams') || '[]'
-    ) as ITeam[];
-    const savedTeam: ITeam = { name: this.teamName, logo: this.teamLogo };
-    // check if team already in local storage (the array)
     if (
-      !savedTeams.find((team: ITeam) => {
-        return team.logo === savedTeam.logo && team.name === savedTeam.name;
-      })
+      this.localstorage.saveTeam({ name: this.teamName, logo: this.teamLogo })
     ) {
-      if (savedTeams.length >= 5) {
-        // de-queue
-        savedTeams.shift();
-      }
-      savedTeams.push(savedTeam);
-      localStorage.setItem('savedTeams', JSON.stringify(savedTeams));
-      alert(`Added the team ${savedTeam.name} to your favorites!`);
+      alert(`Added the team ${this.teamName} to your favorites!`);
+    } else {
+      alert(`Team ${this.teamName} already saved`);
     }
   }
 }

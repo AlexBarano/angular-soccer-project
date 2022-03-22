@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { LocalStorageService } from 'src/app/services/localstorage.service';
 import { MainComponentService } from 'src/app/services/main.service';
 import { ITeam } from '../../models/team.model';
 
@@ -22,14 +23,22 @@ export class MainComponent implements OnInit, OnDestroy {
     { url: 'Italian%20Serie%20A', name: 'Intalian Serie' },
   ];
   teams: ITeam[] = [];
+  savedTeams: ITeam[] = [];
   loading: boolean = false;
   loadedLeague: string = '';
-  constructor(private mainService: MainComponentService) {}
+  constructor(
+    private mainService: MainComponentService,
+    private localstorageService: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
     this.mainService.loadingSubject.subscribe((loading: boolean) => {
       this.loading = loading;
     });
+    this.localstorageService.savedTeams.subscribe((teams: ITeam[]) => {
+      this.savedTeams = teams;
+    });
+    this.localstorageService.loadSavedTeams();
   }
   ngOnDestroy(): void {
     //this.mainService.loadingSubject.unsubscribe();
