@@ -48,6 +48,6 @@ export class MainComponent implements OnInit, OnDestroy {
   }
   deleteSavedTeam(team: ITeam): void {
     this.localstorageService.deleteTeam(team);
-    alert(`Deleted team: ${team.name}!`);
+    alert(`Deleted ${team.name}!`);
   }
 }
