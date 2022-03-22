@@ -8,8 +8,8 @@
     ></app-league-tab>
   </nav>
 
+  <h1 *ngIf="loadedLeague !== ''">League: {{ loadedLeague }}</h1>
   <div class="cards-container">
-    <h1 *ngIf="loadedLeague !== ''">League: {{ loadedLeague }}</h1>
     <app-details-card
       *ngFor="let team of teams"
       [teamLogo]="team.logo"
