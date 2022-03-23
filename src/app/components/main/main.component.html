@@ -7,28 +7,30 @@
       (click)="deleteSavedTeam(savedTeam)"
     />
   </div>
-  <nav class="tab-space">
-    <app-league-tab
-      *ngFor="let league of leagues"
-      [leagueUrl]="league.url"
-      [leagueName]="league.name"
-      (onLeaguePick)="loadLeague($event)"
-    ></app-league-tab>
-  </nav>
+  <div class="list-container">
+    <nav class="tab-space">
+      <app-league-tab
+        *ngFor="let league of leagues"
+        [leagueUrl]="league.url"
+        [leagueName]="league.name"
+        (onLeaguePick)="loadLeague($event)"
+      ></app-league-tab>
+    </nav>
 
-  <h1 *ngIf="loadedLeague !== ''">League: {{ loadedLeague }}</h1>
-  <div class="cards-container">
-    <app-details-card
-      *ngFor="let team of teams"
-      [teamLogo]="team.logo"
-      [teamName]="team.name"
-      class="card"
-    ></app-details-card>
-  </div>
-  <div *ngIf="loading" class="lds-ring">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+    <h1 *ngIf="loadedLeague !== ''">{{ loadedLeague }} League</h1>
+    <div class="cards-container">
+      <app-details-card
+        *ngFor="let team of teams"
+        [teamLogo]="team.logo"
+        [teamName]="team.name"
+        class="card"
+      ></app-details-card>
+    </div>
+    <div *ngIf="loading" class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 </div>
